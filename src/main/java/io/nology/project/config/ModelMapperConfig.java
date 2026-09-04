@@ -1,0 +1,27 @@
+package io.nology.project.config;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.modelmapper.convention.MatchingStrategies;
+
+@Configuration
+public class ModelMapperConfig {
+    
+    @Bean
+    public ModelMapper modelMapper() {
+        ModelMapper mapper = new ModelMapper();
+        mapper.getConfiguration()
+            .setSkipNullEnabled(true)
+            .setPreferNestedProperties(false)
+            .setMatchingStrategy(MatchingStrategies.STRICT);
+
+
+        mapper.addConverter(ctx -> {
+            String source = ctx.getSource();
+            return source == null ? null : source.trim();
+        },String.class, String.class);
+        return mapper;
+    }
+
+}
