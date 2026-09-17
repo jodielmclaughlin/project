@@ -57,7 +57,7 @@ public class EmployeeController{
         return new ResponseEntity<>(EmployeeResponseDTO.fromEntity(created), HttpStatus.CREATED);
     }
 
-    @PatchMapping
+    @PatchMapping("/{id}")
     public ResponseEntity<EmployeeResponseDTO> update(@PathVariable Long id, @RequestBody @Valid UpdateEmployeeDTO data){
         Employee updated = this.employeeService.update(id, data).orElseThrow(() -> new NotFoundException("Employee not found with ID: " + id));
 

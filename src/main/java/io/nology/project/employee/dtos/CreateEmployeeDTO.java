@@ -26,7 +26,7 @@ public class CreateEmployeeDTO{
     @NotBlank 
     private String jobTitle;
 
-    @NotBlank 
+     
     private LocalDate startDate;
 
     public String getFirstName() {

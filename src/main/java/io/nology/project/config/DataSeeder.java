@@ -39,7 +39,7 @@ public class DataSeeder implements CommandLineRunner {
             while(employees.size() < 15) {
                 String email = faker.internet().emailAddress();
 
-                if(email.contains(email)){
+                if(emails.contains(email)){
                     continue;
                 }
 
@@ -64,6 +64,7 @@ public class DataSeeder implements CommandLineRunner {
                         .toLocalDate()
                 );
                 employees.add(employee);
+                System.out.println(employee);
 
             }
             this.employeeRepository.saveAllAndFlush(employees);
