@@ -3,7 +3,12 @@ package io.nology.project;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication 
+// @OpenApiDefinition(
+// 	info = @Info(
+// 		title = "Employee Creator API"
+// 	)
+// )
 public class ProjectApplication {
 
 	public static void main(String[] args) {

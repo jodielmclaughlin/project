@@ -1,116 +1,113 @@
-package io.nology.project.employee.entity;
+package io.nology.project.employee.dtos;
 
 import java.time.LocalDate;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.GenerationType;
+import io.nology.project.employee.entity.ContractType;
 
-@Entity 
-@Table(name = "employees")
-public class Employee {
+import jakarta.validation.constraints.Pattern;
 
-    @Id 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    @Column (nullable = false)
+
+public class UpdateEmployeeDTO {
+    @Pattern(regexp = ".*\\S.*", message = "First name must not be empty")
     private String firstName;
 
-    @Column (nullable = false)
+    @Pattern(regexp = ".*\\S.*", message = "Last name must not be empty")
     private String lastName;
-    
-    @Column (nullable = false, unique = true)
+
+    @Pattern(regexp = ".*\\S.*", message = "Last name must not be empty")
     private String email;
 
-    @Column (nullable = false, unique = true)
+    @Pattern(regexp = ".*\\S.*", message = "Last name must not be empty")
     private String phoneNumber;
 
-    @Column (nullable = false)
+    @Pattern(regexp = ".*\\S.*", message = "Last name must not be empty")
     private String address;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private ContractType contractType;
     
-    @Column (nullable = false)
+    private ContractType contractType;
+
+    @Pattern(regexp = ".*\\S.*", message = "Last name must not be empty")
     private String jobTitle;
 
-    @Column (nullable = false)
+    
     private LocalDate startDate;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getFirstName() {
         return firstName;
     }
 
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
 
     public String getLastName() {
         return lastName;
     }
 
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
 
     public String getEmail() {
         return email;
     }
 
+
     public void setEmail(String email) {
         this.email = email;
     }
+
 
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
+
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
 
     public String getAddress() {
         return address;
     }
 
+
     public void setAddress(String address) {
         this.address = address;
     }
+
 
     public ContractType getContractType() {
         return contractType;
     }
 
+
     public void setContractType(ContractType contractType) {
         this.contractType = contractType;
     }
+
 
     public String getJobTitle() {
         return jobTitle;
     }
 
+
     public void setJobTitle(String jobTitle) {
         this.jobTitle = jobTitle;
     }
 
+
     public LocalDate getStartDate() {
         return startDate;
     }
+
 
     public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;

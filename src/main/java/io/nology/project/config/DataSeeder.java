@@ -1,6 +1,9 @@
 package io.nology.project.config;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Component;
 import com.github.javafaker.Faker;
 
 import io.nology.project.employee.EmployeeRepository;
+import io.nology.project.employee.entity.ContractType;
 import io.nology.project.employee.entity.Employee;
 
 @Component 
@@ -32,7 +36,7 @@ public class DataSeeder implements CommandLineRunner {
         Set<String> emails = new HashSet<>();
         List<Employee> employees = new ArrayList<>();
 
-            while(employees.size() < 10) {
+            while(employees.size() < 15) {
                 String email = faker.internet().emailAddress();
 
                 if(email.contains(email)){
@@ -45,6 +49,20 @@ public class DataSeeder implements CommandLineRunner {
                 employee.setLastName(faker.name().lastName());
                 employee.setPhoneNumber(faker.phoneNumber().cellPhone());
                 employee.setEmail(email);
+                employee.setAddress(faker.address().fullAddress());
+                employee.setContractType(ContractType.FULL_TIME);
+                employee.setJobTitle(faker.job().position());
+                employee.setStartDate(
+                    faker.date()
+                        .between(
+                            Date.from(LocalDate.now().minusYears(20)
+                                .atStartOfDay(ZoneId.systemDefault()).toInstant()),
+                            new Date()
+                        )
+                        .toInstant()
+                        .atZone(ZoneId.systemDefault())
+                        .toLocalDate()
+                );
                 employees.add(employee);
 
             }

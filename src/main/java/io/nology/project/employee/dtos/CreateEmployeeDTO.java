@@ -1,5 +1,7 @@
 package io.nology.project.employee.dtos;
 
+import java.time.LocalDate;
+
 import jakarta.validation.constraints.NotBlank;
 
 public class CreateEmployeeDTO{
@@ -14,6 +16,18 @@ public class CreateEmployeeDTO{
 
     @NotBlank 
     private String phoneNumber;
+
+    @NotBlank 
+    private String address;
+
+    @NotBlank 
+    private String contractType;
+
+    @NotBlank 
+    private String jobTitle;
+
+    @NotBlank 
+    private LocalDate startDate;
 
     public String getFirstName() {
         return firstName;
@@ -45,7 +59,39 @@ public class CreateEmployeeDTO{
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }    
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getContractType() {
+        return contractType;
+    }
+
+    public void setContractType(String contractType) {
+        this.contractType = contractType;
+    }
+
+    public String getJobTitle() {
+        return jobTitle;
+    }
+
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
 
     
 }
