@@ -1,73 +1,28 @@
 package io.nology.project.config;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-import com.github.javafaker.Faker;
 
-import io.nology.project.employee.EmployeeRepository;
-import io.nology.project.employee.entity.ContractType;
-import io.nology.project.employee.entity.Employee;
+import io.nology.project.config.factory.employee.EmployeeFactory;
 
 @Component 
 @Profile("dev")
 public class DataSeeder implements CommandLineRunner {
-    
-    private final EmployeeRepository employeeRepository;
-    private final Faker faker = new Faker(); 
 
-    public DataSeeder(EmployeeRepository repo){
-        this.employeeRepository = repo;
+    private final EmployeeFactory employeeFactory;
+
+    public DataSeeder(EmployeeFactory employeeFactory){
+        this.employeeFactory = employeeFactory;
     }
     
     @Override
     public void run(String... args) throws Exception {
         
-        if(this.employeeRepository.count() == 0){
-        Set<String> emails = new HashSet<>();
-        List<Employee> employees = new ArrayList<>();
+        if(this.employeeFactory.repoEmpty()){
 
-            while(employees.size() < 15) {
-                String email = faker.internet().emailAddress();
-
-                if(emails.contains(email)){
-                    continue;
-                }
-
-                emails.add(email);
-                Employee employee = new Employee();
-                employee.setFirstName(faker.name().firstName());
-                employee.setLastName(faker.name().lastName());
-                employee.setPhoneNumber(faker.phoneNumber().cellPhone());
-                employee.setEmail(email);
-                employee.setAddress(faker.address().fullAddress());
-                employee.setContractType(ContractType.FULL_TIME);
-                employee.setJobTitle(faker.job().position());
-                employee.setStartDate(
-                    faker.date()
-                        .between(
-                            Date.from(LocalDate.now().minusYears(20)
-                                .atStartOfDay(ZoneId.systemDefault()).toInstant()),
-                            new Date()
-                        )
-                        .toInstant()
-                        .atZone(ZoneId.systemDefault())
-                        .toLocalDate()
-                );
-                employees.add(employee);
-                System.out.println(employee);
-
-            }
-            this.employeeRepository.saveAllAndFlush(employees);
+            employeeFactory.create(20);
         }
 
     }
