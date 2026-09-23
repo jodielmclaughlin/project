@@ -2,31 +2,33 @@ package io.nology.project.employee.dtos;
 
 import java.time.LocalDate;
 
+import io.nology.project.employee.entity.ContractType;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class CreateEmployeeDTO{
-    @NotBlank 
+    @NotBlank(message = "First name must not be empty")
     private String firstName;
 
-    @NotBlank 
+    @NotBlank(message = "Last name must not be empty")
     private String lastName;
 
-    @NotBlank 
+    @NotBlank(message = "Email must not be empty") 
     private String email;
 
-    @NotBlank 
+    @NotBlank(message = "Phone number must not be empty")
     private String phoneNumber;
 
-    @NotBlank 
+    @NotBlank(message = "Address must not be empty")
     private String address;
 
-    @NotBlank 
-    private String contractType;
+    @NotBlank(message = "Contract Type must not be empty") 
+    private ContractType contractType;
 
-    @NotBlank 
+    @NotBlank(message = "Job title must not be empty")
     private String jobTitle;
 
-     
+    @NotNull(message = "Start date must be provided")
     private LocalDate startDate;
 
     public String getFirstName() {
@@ -69,11 +71,11 @@ public class CreateEmployeeDTO{
         this.address = address;
     }
 
-    public String getContractType() {
+    public ContractType getContractType() {
         return contractType;
     }
 
-    public void setContractType(String contractType) {
+    public void setContractType(ContractType contractType) {
         this.contractType = contractType;
     }
 

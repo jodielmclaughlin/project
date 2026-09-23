@@ -2,6 +2,7 @@ package io.nology.project.employee.entity;
 
 import java.time.LocalDate;
 
+import io.nology.project.common.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -13,7 +14,7 @@ import jakarta.persistence.GenerationType;
 
 @Entity 
 @Table(name = "employees")
-public class Employee {
+public class Employee extends BaseEntity{
 
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)

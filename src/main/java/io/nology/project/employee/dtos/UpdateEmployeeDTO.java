@@ -3,7 +3,7 @@ package io.nology.project.employee.dtos;
 import java.time.LocalDate;
 
 import io.nology.project.employee.entity.ContractType;
-
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
 
@@ -15,22 +15,22 @@ public class UpdateEmployeeDTO {
     @Pattern(regexp = ".*\\S.*", message = "Last name must not be empty")
     private String lastName;
 
-    @Pattern(regexp = ".*\\S.*", message = "Last name must not be empty")
+    @Pattern(regexp = ".*\\S.*", message = "Email must not be empty")
     private String email;
 
-    @Pattern(regexp = ".*\\S.*", message = "Last name must not be empty")
+    @Pattern(regexp = ".*\\S.*", message = "Phone number must not be empty")
     private String phoneNumber;
 
-    @Pattern(regexp = ".*\\S.*", message = "Last name must not be empty")
+    @Pattern(regexp = ".*\\S.*", message = "Address must not be empty")
     private String address;
 
     
     private ContractType contractType;
 
-    @Pattern(regexp = ".*\\S.*", message = "Last name must not be empty")
+    @Pattern(regexp = ".*\\S.*", message = "Job title must not be empty")
     private String jobTitle;
 
-    
+    @NotNull(message = "Start date must be provided")
     private LocalDate startDate;
 
 

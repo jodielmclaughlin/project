@@ -37,7 +37,6 @@ public class EmployeeE2ETest {
     //getById_nonExistentId_returns404
     //getById_invalidDataTypeId_returnsBadRequest
     //createEmployee_withMissingData_ReturnsBadRequest
-    //createEmployee_withValidDataMissingGenre_ReturnsBadRequest
     //createEmployee_withValidData_ReturnsCreatedEmployee
     //updateEmployee_withInvalidData_ReturnsBadRequest
     //updateEmployee_EmployeeDoesNotExist_ReturnsNotFound
