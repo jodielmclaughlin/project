@@ -35,7 +35,6 @@ public class EmployeeServiceTest {
     @InjectMocks 
     private EmployeeService employeeService;
 
-    //Tests to do
     @Test 
     public void getAll_CallsFindAllOnRepo(){
         this.employeeService.getAll();

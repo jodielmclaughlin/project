@@ -30,7 +30,7 @@ public class UpdateEmployeeDTO {
     @Pattern(regexp = ".*\\S.*", message = "Job title must not be empty")
     private String jobTitle;
 
-    @NotNull(message = "Start date must be provided")
+    
     private LocalDate startDate;
 
 

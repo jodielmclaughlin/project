@@ -22,7 +22,7 @@ public class CreateEmployeeDTO{
     @NotBlank(message = "Address must not be empty")
     private String address;
 
-    @NotBlank(message = "Contract Type must not be empty") 
+    
     private ContractType contractType;
 
     @NotBlank(message = "Job title must not be empty")

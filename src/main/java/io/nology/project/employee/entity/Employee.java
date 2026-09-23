@@ -7,18 +7,13 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.persistence.GenerationType;
+
 
 @Entity 
 @Table(name = "employees")
 public class Employee extends BaseEntity{
 
-    @Id 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Column (nullable = false)
     private String firstName;
@@ -36,7 +31,7 @@ public class Employee extends BaseEntity{
     private String address;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column
     private ContractType contractType;
     
     @Column (nullable = false)
@@ -45,13 +40,6 @@ public class Employee extends BaseEntity{
     @Column (nullable = false)
     private LocalDate startDate;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getFirstName() {
         return firstName;

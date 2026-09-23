@@ -34,6 +34,12 @@ public class EmployeeFactory {
         return this.repo.count() == 0;
     }
 
+    
+    public Employee create() {
+        EmployeeFactoryOptions empty = EmployeeFactoryOptions.builder().build();
+        return create(empty);
+    }
+
     public Employee create(EmployeeFactoryOptions options) {
         Employee newEmployee = new Employee();
         newEmployee.setFirstName(
@@ -63,12 +69,7 @@ public class EmployeeFactory {
     }
 
 
-    public Employee create() {
-        EmployeeFactoryOptions empty = EmployeeFactoryOptions.builder().build();
-        return create(empty);
-    }
-
-    public List<Employee> create(int n) {
+    public List<Employee> create(EmployeeFactoryOptions options, int n) {
         ArrayList<Employee> employees = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             Employee created = create();
