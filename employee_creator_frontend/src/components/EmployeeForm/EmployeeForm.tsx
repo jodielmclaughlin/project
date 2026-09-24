@@ -1,26 +1,62 @@
 import {useForm} from "react-hook-form";
 import {schema, type EmployeeFormData} from "./schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect } from "react";
+import type { Employee } from "../../types/employee";
+
+
 
 interface FormProps{
     onSubmit:(data:EmployeeFormData) => unknown;
+    employee?: Employee;
+    submitButtonText?: string;
 }
 
-function NewEmployeeForm({onSubmit}: FormProps){
-    const{
+function EmployeeForm({
+    onSubmit,
+    employee,
+    submitButtonText = "Create Employee"
+    }: FormProps) {
+        const {
         handleSubmit,
-        formState: {errors, isSubmitSuccessful},
+        formState: { errors },
         register,
         reset
-    } = useForm({
-        resolver:zodResolver(schema),
+    } = useForm<EmployeeFormData>({
+        resolver: zodResolver(schema),
+        defaultValues: {
+            firstName: employee?.firstName ?? "",
+            lastName: employee?.lastName ?? "",
+            email: employee?.email ?? "",
+            phoneNumber: employee?.phoneNumber ?? "",
+            address: employee?.address ?? "",
+            contractType: employee?.contractType ?? "FULL_TIME",
+            jobTitle: employee?.jobTitle ?? "",
+            startDate: employee?.startDate ?? "",
+        },
     });
+
+    useEffect(() => {
+        if (employee) {
+            reset({
+                firstName: employee.firstName,
+                lastName: employee.lastName,
+                email: employee.email,
+                phoneNumber: employee.phoneNumber,
+                address: employee.address,
+                contractType: employee.contractType,
+                jobTitle: employee.jobTitle,
+                startDate: employee.startDate,
+            });
+        }
+    }, [employee, reset]);
+
     const inputStyles =
     "w-full rounded-lg border border-gray-300 px-4 py-2.5 text-gray-900 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200";
     
     console.log(errors, " ERRORS");
 
-    isSubmitSuccessful && reset();
+    //isSubmitSuccessful && reset();
 
     return(
         <div  data-testid="employee-page" className="min-h-screen bg-gray-100 px-4 py-10">
@@ -237,10 +273,10 @@ function NewEmployeeForm({onSubmit}: FormProps){
                     <div className="mt-8 flex justify-end">
                         <button
                             type="submit"
-                            data-testid="create-employee-button"
+                            data-testid="submit-employee-button"
                             className="rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                         >
-                            Create Employee
+                            {submitButtonText ?? "Create Employee"}
                         </button>
                     </div>
                 </form>
@@ -249,4 +285,4 @@ function NewEmployeeForm({onSubmit}: FormProps){
     )
 }
 
-export default NewEmployeeForm;
+export default EmployeeForm;

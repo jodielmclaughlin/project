@@ -1,21 +1,4 @@
-type ContractType =
-    | "FULL_TIME"
-    | "PART_TIME"
-    | "CONTRACT"
-    | "TEMPORARY"
-    | "INTERN";
-
-interface Employee{
-    id: number;
-    firstName: string;
-    lastName: string;
-    email: string;
-    phoneNumber: string;
-    address: string;
-    contractType: ContractType;
-    jobTitle: string;
-    startDate: string;
-}
+import type { Employee, ContractType } from "../types/employee";
 
 interface CreateEmployeeDTO {
     firstName: string;
@@ -44,6 +27,14 @@ export async function getAllEmployees(){
         throw new Error("Could not fetch employees")
     }
     return (await response.json()) as Employee[];
+}
+
+export async function getEmployee(id: number){
+    const response = await fetch(`http://localhost:8080/employees/${id}`);
+    if (!response.ok){
+        throw new Error("Could not fetch employee")
+    }
+    return (await response.json()) as Employee;
 }
 
 export async function createEmployee(employeeData: CreateEmployeeDTO) {

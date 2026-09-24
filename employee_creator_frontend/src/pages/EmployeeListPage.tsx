@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-
-
 import { useNavigate } from "react-router-dom";
-import Employee from "../components/Employee/Employee";
+
 import { deleteEmployee, getAllEmployees } from "../services/employees";
+import type { Employee } from "../types/employee";
+import EmployeeCard from "../components/Employee/EmployeeCard";
+
+
+
 
 function EmployeeListPage(){
 
@@ -108,7 +111,7 @@ function EmployeeListPage(){
                     data-testid="employee-list"
                     className="space-y-4"
                 >
-                    {employees.map((employee) => <Employee key={employee.id} employee={employee} onDelete={handleDeleteClick}/>)}
+                    {employees.map((employee) => <EmployeeCard key={employee.id} employee={employee} onDelete={handleDeleteClick}/>)}
                 </div>
 
                 </div>

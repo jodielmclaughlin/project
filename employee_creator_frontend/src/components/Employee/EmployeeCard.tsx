@@ -1,24 +1,5 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-type ContractType =
-    | "FULL_TIME"
-    | "PART_TIME"
-    | "CONTRACT"
-    | "TEMPORARY"
-    | "INTERN";
-
-interface Employee{
-    id: number;
-    firstName: string;
-    lastName: string;
-    email: string;
-    phoneNumber: string;
-    address: string;
-    contractType: ContractType;
-    jobTitle: string;
-    startDate: string;
-}
+import type { Employee } from "../../types/employee"
 
 
 interface EmployeeProps{
@@ -26,14 +7,13 @@ interface EmployeeProps{
     onDelete: (employee: Employee) => void;
 }
 
-function Employee({employee, onDelete }: EmployeeProps){
+function EmployeeCard({employee, onDelete }: EmployeeProps){
     const navigate = useNavigate();
     
     const handleEdit = (id: number) => {
     navigate(`/employees/${id}/edit`);
     
 };
-
 
     return(
         <div
@@ -81,6 +61,6 @@ function Employee({employee, onDelete }: EmployeeProps){
     )
 }
 
-export default Employee;
+export default EmployeeCard;
 
 
